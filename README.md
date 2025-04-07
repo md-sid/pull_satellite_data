@@ -2,7 +2,16 @@
 
 ## Python script to extract Sentinel 2, Landsat 8 or Landsat 9 GeoTIFF data locally for a given ROI
 
+### Installation
+Install the required libraries `pip install -r requirements.txt`
+
 ### Usage:
+If you are using the GEE API for the first time, then run the following:
+```
+import ee
+ee.Authenticate()
+ee.Initialize()
+```
 Update the dictionary called `pull_data_info` in the `pull_data.py` script to customize the data extraction, and then run `pull_data.py`.
 
 The keys in `pull_data_info` are:
