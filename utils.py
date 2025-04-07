@@ -23,13 +23,14 @@ class SatelliteData:
     def __init__(self, info):
         self.start_date = info['start_date']
         self.end_date = info['end_date']
-        self.farm_name = info['farm_name']
         self.boundary = info['boundary_path']
         self.bands = info['selected_bands']
         self.output_dir = info['output_dir']
+        self.scale = info.get('scale', 10)
         self.plot_images = info.get('plot_images', False)
         if not isinstance(self.plot_images, bool):
             raise ValueError('Invalid value for plot_images. Expected a boolean (True or False)')
+        self.farm_name = info.get('farm_name', os.path.basename(self.boundary[:-4]))
         if info['satelliteID'] == 0:
             self.satellite_name = 'Sentinel2'
             self.dataset = 'COPERNICUS/S2_SR_HARMONIZED'
@@ -144,7 +145,7 @@ class SatelliteData:
         images = collection.toList(collection.size())
         try:
             num_images = images.size().getInfo()
-            print(f"Found {num_images} images. Downloading...")
+            print(f"Found {num_images} images in {self.satellite_name} from {self.start_date} to {self.end_date}")
         except Exception as e:
             print(f'Check start and end date: {e}')
             sys.exit(1)
@@ -160,14 +161,14 @@ class SatelliteData:
 
             # Generate download URL for multi-band image
             url = image.getDownloadURL({
-                'scale': 10,  # Enter the image resolution scale
+                'scale': self.scale,
                 'region': region,
                 'format': 'GeoTIFF'
             })
 
             # Save file locally
             file_path = os.path.join(str(save_dir), str(date_str) + '.tif')
-            print(f"Downloading: {file_path}")
+            print(f"Saving: {file_path}")
 
             response = requests.get(url)
             if response.status_code == 200:
