@@ -17,6 +17,7 @@ import rasterio
 import requests
 import geopandas as gpd
 from matplotlib import pyplot as plt
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 
 class SatelliteData:
@@ -155,8 +156,10 @@ class SatelliteData:
         if not os.path.exists(save_dir):
             os.makedirs(save_dir)
 
-        for i in range(num_images):
-            image = ee.Image(images.get(i))
+        # Helper function to save the images
+        def save_image(idx):
+        # for i in range(num_images):
+            image = ee.Image(images.get(idx))
             date_str = image.date().format("YYYY-MM-dd").getInfo()
 
             # Generate download URL for multi-band image
@@ -185,3 +188,9 @@ class SatelliteData:
 
             else:
                 print(f"Failed: {date_str}")
+
+        # Parallel execution
+        with ThreadPoolExecutor(max_workers=os.cpu_count()) as executor:  # Tune max_workers based on your machine
+            futures = [executor.submit(save_image, i) for i in range(num_images)]
+            for _ in as_completed(futures):
+                pass  # Or handle/log result if needed
