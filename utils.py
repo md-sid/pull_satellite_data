@@ -190,7 +190,7 @@ class SatelliteData:
                 print(f"Failed: {date_str}")
 
         # Parallel execution
-        with ThreadPoolExecutor(max_workers=os.cpu_count()) as executor:  # Tune max_workers based on your machine
+        with ThreadPoolExecutor(max_workers=os.cpu_count()) as executor:
             futures = [executor.submit(save_image, i) for i in range(num_images)]
             for _ in as_completed(futures):
-                pass  # Or handle/log result if needed
+                pass
