@@ -3,7 +3,7 @@ Title       : utils.py
 Description : Helper function for the script pull_data.py
 Author      : Siddat Nesar (siddatnesar@montana.edu)
 Date        : 2025-04-06
-Version     : 1.0.0
+Version     : 1.0.1
 License     : BSD 3-Clause
 """
 
@@ -158,7 +158,6 @@ class SatelliteData:
 
         # Helper function to save the images
         def save_image(idx):
-        # for i in range(num_images):
             image = ee.Image(images.get(idx))
             date_str = image.date().format("YYYY-MM-dd").getInfo()
 

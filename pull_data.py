@@ -1,6 +1,6 @@
 """
 Title       : pull_data.py
-Description : Pulls the data for Sentinel2. Landsat8 or Landsat9 using Google Earth Engine
+Description : Pulls the data for Sentinel2, Landsat8 or Landsat9 using Google Earth Engine
 Author      : Siddat Nesar (siddatnesar@montana.edu)
 Date        : 2025-04-06
 Version     : 1.0.0
@@ -12,13 +12,13 @@ import ee
 from utils import SatelliteData
 
 pull_data_info = {
-    'start_date' : '2024-05-01',        # Enter the start date
-    'end_date' : '2024-05-31',          # Enter the end date
+    'start_date' : '2024-06-01',        # Enter the start date
+    'end_date' : '2024-06-30',          # Enter the end date
     'boundary_path' : './data/hospital_area.kmz',   # Enter a KML or KMZ file
     'selected_bands' : ["B1", "B2", "B3", "B4"],    # Enter the band names you want corresponding to 'satelliteID'
     'satelliteID' : 0,                  # Enter 0 for Sentinel 2, 1 for Landsat 8 and 2 for Landsat 9
     'output_dir' : './ExtractedSatelliteData',      # Enter the directory to save the data
-    # 'plot_images' : True,               # True or False (Default value is False if not specified)
+    'plot_images' : True,               # True or False (Default value is False if not specified)
     # 'scale' : 20,                       # Enter the resolution in meters (Default is 10 if not specified)
     # 'farm_name' : 'hospital_area',      # Enter the name of the field (will take ROI filename if not specified)
 }
