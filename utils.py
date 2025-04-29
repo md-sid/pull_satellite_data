@@ -45,7 +45,7 @@ class SatelliteData:
             self.satellite_name = 'Cropland'
             self.dataset = 'USDA/NASS/CDL'
         else:
-            raise ValueError('Invalid Satellite ID!\nPlease enter either 0, 1, or 2')
+            raise ValueError('Invalid Satellite ID!\nPlease enter either 0, 1, 2, or 3')
 
 
     def kmz_to_kml(self):
