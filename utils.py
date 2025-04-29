@@ -2,8 +2,8 @@
 Title       : utils.py
 Description : Helper function for the script pull_data.py
 Author      : Siddat Nesar (siddatnesar@montana.edu)
-Date        : 2025-04-06
-Version     : 1.0.1
+Date        : 2025-04-28
+Version     : 1.1.0
 License     : BSD 3-Clause
 """
 
@@ -41,6 +41,9 @@ class SatelliteData:
         elif info['satelliteID'] == 2:
             self.satellite_name = 'Landsat9'
             self.dataset = 'LANDSAT/LC09/C02/T1_L2'
+        elif info['satelliteID'] == 3:
+            self.satellite_name = 'Cropland'
+            self.dataset = 'USDA/NASS/CDL'
         else:
             raise ValueError('Invalid Satellite ID!\nPlease enter either 0, 1, or 2')
 
@@ -101,6 +104,11 @@ class SatelliteData:
             rgb_bands = ['B4', 'B3', 'B2']
         elif self.satellite_name in ('Landsat8' or 'Landsat9'):
             rgb_bands = ['SR_B4', 'SR_B3', 'SR_B2']
+        elif self.satellite_name == 'Cropland':
+            with rasterio.open(path) as d:
+                band = d.read(1)
+            plt.imsave(path[:-3] + 'png', band)
+            return
         else:
             self.plot_images = False
             return
