@@ -18,7 +18,11 @@ The keys in `pull_data_info` are:
 > `start_date` : Enter the start date for your data extraction (including) \
 > `end_date` : Enter the end date for your data extraction (excluding) \
 > `boundary_path` : Path to KML or KMZ file of your ROI \
-> `selected_bands` : Enter the band names you want to extract. The bands names are avaiable here: [Sentinel 2](https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S2_SR_HARMONIZED), [Landsat 8](https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC08_C02_T1_L2), [Landsat 9](https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC09_C02_T1_L2) \
+> `selected_bands` : Enter the band names you want to extract. The bands names are avaiable here: 
+> [Sentinel 2](https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S2_SR_HARMONIZED), 
+> [Landsat 8](https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC08_C02_T1_L2), 
+> [Landsat 9](https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC09_C02_T1_L2), 
+> [Cropland Data Layer](https://developers.google.com/earth-engine/datasets/catalog/USDA_NASS_CDL) \
 > `satelliteID` : Enter 0 for Sentinel 2, 1 for Landsat 8, 2 for Landsat 9, and 3 for Cropland Data Layer \
 > `output_dir` : Directory to save the extracted GeoTIFF files (the data will be saved in `output_dir/farm_name/satellite_name`) \
 > `plot_images` : [Optional] Enter True if you want to save the RGB images (Default value is False) \
